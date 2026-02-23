@@ -81,8 +81,8 @@ function endTest() {
 // Calculate words-per-minute with error adjustment
 function calculateWPM() {
     const wordsTyped = totalTyped.trim().split(/\s+/).length;
-    const baseWPM = Math.round((wordsTyped / 60) * 60); 
-    const adjustedWPM = Math.max(baseWPM - errors, 0); 
+    const baseWPM = Math.round((wordsTyped / 60) * 60); // Replace first number to change time left
+    const adjustedWPM = Math.max(baseWPM - errors, 0); // Ensure WPM does not go below 0
     return adjustedWPM;
 }
 
@@ -101,9 +101,9 @@ document.addEventListener('keydown', (e) => {
     }
 
     const textArray = longText.split('');
-    textContainer.innerText = '';  /
+    textContainer.innerText = '';  // Clear the existing content of textContainer
 
-    errors = 0;  
+    errors = 0;  // Reset errors count for this typing session
 
     for (let i = 0; i < textArray.length; i++) {
         const span = document.createElement('span');
@@ -118,12 +118,12 @@ document.addEventListener('keydown', (e) => {
         }
         
         span.textContent = textArray[i];
-        textContainer.appendChild(span);  
+        textContainer.appendChild(span);  // Append each span element to the textContainer
     }
 
     // Scroll the container only after 20 characters are typed
     if (totalTyped.length >= 20) {
-        const scrollAmount = (totalTyped.length - 20) * 14;  
+        const scrollAmount = (totalTyped.length - 20) * 14;  // Adjust scroll factor as needed
         textContainer.scrollLeft = scrollAmount;
     }
 });
@@ -140,8 +140,8 @@ function resetTest() {
     typingStarted = false;
     currentCharIndex = 0;
     errors = 0;
-    textContainer.scrollLeft = 0; 
-    longText = generateLongText(); 
+    textContainer.scrollLeft = 0; // Reset scroll position
+    longText = generateLongText(); // Shuffle words and generate new text
     init();
 }
 
